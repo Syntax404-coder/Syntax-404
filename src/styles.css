@@ -924,6 +924,18 @@ section+section::before {
 .skills {
     padding: 6rem 0;
     background: var(--bg-light);
+    position: relative;
+    z-index: 2;
+    margin-top: -2px;
+    /* Overlap to cover Experience background gap */
+    box-shadow: 0 -10px 0 var(--bg-light);
+    /* Extend background upward */
+}
+
+.skills .container {
+    transform: scale(0.8);
+    /* Scale down content by 20% */
+    transform-origin: top center;
 }
 
 .skills-grid {
@@ -974,35 +986,48 @@ section+section::before {
     padding: 0.25rem 0;
 }
 
-.skills-bars {
-    max-width: 800px;
-    margin: 0 auto;
+/* Circular Skill Bars */
+.skills-circular-bars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
+    margin: 3rem auto 0;
+    justify-items: center;
 }
 
-.skill-bar-item {
-    margin-bottom: 2rem;
-}
-
-.skill-bar-header {
+.circular-skill-item {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
-.skill-bar {
-    height: 10px;
-    background: var(--border-color);
-    border-radius: 5px;
-    overflow: hidden;
+.progress-ring {
+    transform: rotate(-90deg);
 }
 
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 5px;
-    width: 0;
-    transition: width 1s ease;
+.progress-ring-circle {
+    stroke-linecap: round;
+}
+
+.circular-skill-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.circular-skill-percentage {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.circular-skill-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
 }
 
 /* Projects Section */
@@ -1133,7 +1158,7 @@ section+section::before {
 /* Contact Section - New Design */
 .contact-new {
     padding: 6rem 0;
-    background: linear-gradient(135deg, #e0f7f7 0%, #fff 50%, #f5e6f0 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #1f2937 100%);
     min-height: 60vh;
 }
 

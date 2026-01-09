@@ -27,11 +27,11 @@ const Skills = () => {
   ]
 
   const skillBars = [
-    { name: "Python / AI/ML", percentage: 90 },
-    { name: "JavaScript/TypeScript", percentage: 88 },
-    { name: "Next.js / React", percentage: 85 },
-    { name: "Flutter / Dart", percentage: 82 },
-    { name: "Computer Vision", percentage: 80 }
+    { name: "AI/ML", percentage: 75 },
+    { name: "Front End", percentage: 73 },
+    { name: "Backend", percentage: 70 },
+    { name: "Mobile Dev", percentage: 67 },
+    { name: "System Architecture", percentage: 65 }
   ]
 
   const skillCardsRef = useRef([])
@@ -59,15 +59,18 @@ const Skills = () => {
       }
     })
 
-    // Animate skill bars
+    // Animate circular progress bars
     const barObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const progressBars = entry.target.querySelectorAll('.skill-progress')
-            progressBars.forEach((bar) => {
-              const width = bar.getAttribute('data-width')
-              bar.style.width = width + '%'
+            const circles = entry.target.querySelectorAll('.progress-ring-circle')
+            circles.forEach((circle) => {
+              const percentage = parseFloat(circle.getAttribute('data-percentage'))
+              const radius = circle.r.baseVal.value
+              const circumference = radius * 2 * Math.PI
+              const offset = circumference - (percentage / 100) * circumference
+              circle.style.strokeDashoffset = offset
             })
             barObserver.unobserve(entry.target)
           }
@@ -96,8 +99,8 @@ const Skills = () => {
         <h2 className="section-title">Skills & Competencies</h2>
         <div className="skills-grid">
           {skills.map((skill, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="skill-card"
               ref={(el) => (skillCardsRef.current[index] = el)}
             >
@@ -111,18 +114,52 @@ const Skills = () => {
             </div>
           ))}
         </div>
-        <div className="skills-bars" ref={skillsSectionRef}>
-          {skillBars.map((bar, index) => (
-            <div key={index} className="skill-bar-item">
-              <div className="skill-bar-header">
-                <span>{bar.name}</span>
-                <span>{bar.percentage}%</span>
+        <div className="skills-circular-bars" ref={skillsSectionRef}>
+          {skillBars.map((bar, index) => {
+            const radius = 45
+            const circumference = radius * 2 * Math.PI
+
+            return (
+              <div key={index} className="circular-skill-item">
+                <svg className="progress-ring" width="120" height="120">
+                  <circle
+                    className="progress-ring-bg"
+                    stroke="#E5E7EB"
+                    strokeWidth="8"
+                    fill="transparent"
+                    r={radius}
+                    cx="60"
+                    cy="60"
+                  />
+                  <circle
+                    className="progress-ring-circle"
+                    stroke="url(#gradient)"
+                    strokeWidth="8"
+                    fill="transparent"
+                    r={radius}
+                    cx="60"
+                    cy="60"
+                    data-percentage={bar.percentage}
+                    style={{
+                      strokeDasharray: `${circumference} ${circumference}`,
+                      strokeDashoffset: circumference,
+                      transition: 'stroke-dashoffset 1.5s ease-in-out'
+                    }}
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8B5CF6" />
+                      <stop offset="100%" stopColor="#7C3AED" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="circular-skill-info">
+                  <span className="circular-skill-percentage">{bar.percentage}%</span>
+                  <span className="circular-skill-name">{bar.name}</span>
+                </div>
               </div>
-              <div className="skill-bar">
-                <div className="skill-progress" data-width={bar.percentage}></div>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
