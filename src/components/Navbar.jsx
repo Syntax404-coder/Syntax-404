@@ -41,7 +41,7 @@ const Navbar = () => {
           <li><a href="#projects" className="nav-link" onClick={(e) => scrollToSection(e, '#projects')}>Projects</a></li>
           <li><a href="#contact" className="nav-link" onClick={(e) => scrollToSection(e, '#contact')}>Contact</a></li>
         </ul>
-        <a href="#contact" className="nav-cta">Let's Talk</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=domenictaganahan@gmail.com&su=Let's%20Talk" target="_blank" rel="noopener noreferrer" className="nav-cta">Let's Talk</a>
         <div
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}

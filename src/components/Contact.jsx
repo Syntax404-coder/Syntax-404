@@ -1,109 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(`Thank you for your message, ${formData.name}! I'll get back to you soon.`)
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    e.target.reset()
-  }
-
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className="contact-new">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
+        <h2 className="contact-title">GET IN TOUCH</h2>
         <p className="contact-subtitle">
-          I'm always open to discussing new projects, creative ideas, or opportunities
-          to be part of your visions.
+          Hi, I am glad you made it here to know more about me. I'm a passionate developer
+          and tech enthusiast. Feel free to reach out through any of the channels below.
         </p>
-        <div className="contact-content">
-          <div className="contact-info">
-            <div className="contact-item">
-              <div className="contact-icon"></div>
-              <div>
-                <h3>Email</h3>
-                <p>your.email@example.com</p>
-              </div>
+        <div className="contact-cards">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=domenictaganahan@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-card" style={{ textDecoration: 'none' }}>
+            <div className="contact-card-icon email-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
             </div>
-            <div className="contact-item">
-              <div className="contact-icon"></div>
-              <div>
-                <h3>Phone</h3>
-                <p>+1 (234) 567-8900</p>
-              </div>
+            <h3>Email</h3>
+            <p>domenictaganahan@gmail.com</p>
+          </a>
+          <div className="contact-card">
+            <div className="contact-card-icon address-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
             </div>
-            <div className="contact-item">
-              <div className="contact-icon"></div>
-              <div>
-                <h3>Location</h3>
-                <p>Your City, Country</p>
-              </div>
-            </div>
-            <div className="social-links">
-              <a href="#" className="social-link">LinkedIn</a>
-              <a href="#" className="social-link">GitHub</a>
-              <a href="#" className="social-link">Twitter</a>
-              <a href="#" className="social-link">Instagram</a>
-            </div>
+            <h3>Address</h3>
+            <p>La Paz, Iloilo City</p>
           </div>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Your Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+          <div className="contact-card">
+            <div className="contact-card-icon call-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
             </div>
-            <div className="form-group">
-              <input
-                type="email"
-                placeholder="Your Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                placeholder="Your Message"
-                rows="6"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">Send Message</button>
-          </form>
+            <h3>Call</h3>
+            <p>+639696264837</p>
+          </div>
         </div>
       </div>
     </section>
