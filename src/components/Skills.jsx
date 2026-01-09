@@ -27,11 +27,11 @@ const Skills = () => {
   ]
 
   const skillBars = [
-    { name: "AI/ML", percentage: 75 },
-    { name: "Front End", percentage: 73 },
-    { name: "Backend", percentage: 70 },
-    { name: "Mobile Dev", percentage: 67 },
-    { name: "System Architecture", percentage: 65 }
+    { name: "AI/ML", percentage: 30 },
+    { name: "Front End", percentage: 25 },
+    { name: "Backend", percentage: 22 },
+    { name: "Mobile Dev", percentage: 15 },
+    { name: "System Architecture", percentage: 8 }
   ]
 
   const skillCardsRef = useRef([])
@@ -113,6 +113,9 @@ const Skills = () => {
               </ul>
             </div>
           ))}
+        </div>
+        <div className="daily-tasks-section">
+          <h3 className="daily-tasks-title">What My Weekly Tasks Look Like</h3>
         </div>
         <div className="skills-circular-bars" ref={skillsSectionRef}>
           {skillBars.map((bar, index) => {

@@ -369,6 +369,8 @@ section {
     margin: 0 auto;
     padding: 0 24px;
     width: 100%;
+    max-width: 1400px;
+    /* Center container */
     height: 100%;
     min-height: 100vh;
 }
@@ -986,6 +988,19 @@ section+section::before {
     padding: 0.25rem 0;
 }
 
+/* Daily Tasks Section */
+.daily-tasks-section {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.daily-tasks-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8b5cf6;
+    margin-bottom: 0.5rem;
+}
+
 /* Circular Skill Bars */
 .skills-circular-bars {
     display: grid;
@@ -1158,8 +1173,11 @@ section+section::before {
 /* Contact Section - New Design */
 .contact-new {
     padding: 6rem 0;
-    background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #1f2937 100%);
-    min-height: 60vh;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 70%, #8b5cf6 85%, #1f2937 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact-title {
