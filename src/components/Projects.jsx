@@ -1,30 +1,39 @@
 import React, { useEffect, useRef } from 'react'
 
+import orthovisionImg from './img/Orthovision.png'
+import bentaPosImg from './img/Benta.png'
+import automationImg from './img/SENTRY.png'
+import cyborgImg from './img/CYB.jpg'
+
 const Projects = () => {
   const projects = [
     {
       title: "OrthoVision",
       description: "A medical diagnostic web platform with real-time bone fracture detection using Computer Vision. Features YOLOv8 and ResNet models integrated with Next.js frontend and FastAPI backend.",
       tags: ["Next.js 14", "FastAPI", "YOLOv8", "ResNet", "Computer Vision"],
-      sourceLink: "https://github.com/kurumizxc/OrthoVision"
+      sourceLink: "https://github.com/kurumizxc/OrthoVision",
+      image: orthovisionImg
     },
     {
       title: "Benta POS System",
       description: "A cross-platform Point-of-Sale application built with Flutter. Handles complex sales transactions, inventory tracking, and state management with responsive UI across all device sizes.",
       tags: ["Flutter", "Dart", "State Management", "Mobile App"],
-      sourceLink: "https://github.com/keanedalisay/cc206_benta"
+      sourceLink: "https://github.com/keanedalisay/cc206_benta",
+      image: bentaPosImg
     },
     {
       title: "Automation CLI Tools",
       description: "Custom command-line tools and scripts for automating repetitive development tasks. Includes system monitoring scripts and workflow optimization utilities built with PowerShell and Bash.",
       tags: ["PowerShell", "Bash", "Automation", "CLI Tools"],
-      sourceLink: "https://github.com/Syntax404-coder/SENTRY"
+      sourceLink: "https://github.com/Syntax404-coder/SENTRY",
+      image: automationImg
     },
     {
       title: "CYB:ORG Projects",
       description: "Student-led robotics and fabrication projects managed as Financial Officer. Contributed to organizational workflows, event logistics, and resource allocation for technical initiatives.",
       tags: ["Project Management", "Robotics", "Leadership"],
-      sourceLink: "https://www.facebook.com/cybrobotics"
+      sourceLink: "https://www.facebook.com/cybrobotics",
+      image: cyborgImg
     }
   ]
 
@@ -65,12 +74,13 @@ const Projects = () => {
         <h2 className="section-title">Featured Projects</h2>
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="project-card"
               ref={(el) => (projectCardsRef.current[index] = el)}
             >
               <div className="project-image">
+                <img src={project.image} alt={project.title} />
                 <div className="project-overlay">
                   <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
                 </div>

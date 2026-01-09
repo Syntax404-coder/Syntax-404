@@ -28,7 +28,7 @@ const Contact = () => {
       <div className="container">
         <h2 className="section-title">Get In Touch</h2>
         <p className="contact-subtitle">
-          I'm always open to discussing new projects, creative ideas, or opportunities 
+          I'm always open to discussing new projects, creative ideas, or opportunities
           to be part of your visions.
         </p>
         <div className="contact-content">
@@ -63,39 +63,39 @@ const Contact = () => {
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input 
-                type="text" 
-                placeholder="Your Name" 
+              <input
+                type="text"
+                placeholder="Your Name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <input 
-                type="email" 
-                placeholder="Your Email" 
+              <input
+                type="email"
+                placeholder="Your Email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <input 
-                type="text" 
-                placeholder="Subject" 
+              <input
+                type="text"
+                placeholder="Subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <textarea 
-                placeholder="Your Message" 
-                rows="6" 
+              <textarea
+                placeholder="Your Message"
+                rows="6"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}

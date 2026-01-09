@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <div className="nav-brand">NICO</div>
+        <div className="nav-brand">NICO<span className="dot">.</span></div>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li><a href="#home" className="nav-link" onClick={(e) => scrollToSection(e, '#home')}>Home</a></li>
           <li><a href="#about" className="nav-link" onClick={(e) => scrollToSection(e, '#about')}>About</a></li>
@@ -41,8 +41,8 @@ const Navbar = () => {
           <li><a href="#projects" className="nav-link" onClick={(e) => scrollToSection(e, '#projects')}>Projects</a></li>
           <li><a href="#contact" className="nav-link" onClick={(e) => scrollToSection(e, '#contact')}>Contact</a></li>
         </ul>
-        <a href="#contact" className="nav-cta">Hire Me</a>
-        <div 
+        <a href="#contact" className="nav-cta">Let's Talk</a>
+        <div
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
