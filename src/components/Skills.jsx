@@ -27,11 +27,11 @@ const Skills = () => {
   ]
 
   const skillBars = [
-    { name: "AI/ML", percentage: 30 },
+    { name: "System Architecture", percentage: 30 },
     { name: "Front End", percentage: 25 },
     { name: "Backend", percentage: 22 },
     { name: "Mobile Dev", percentage: 15 },
-    { name: "System Architecture", percentage: 8 }
+    { name: "AI/ML", percentage: 8 }
   ]
 
   const skillCardsRef = useRef([])
