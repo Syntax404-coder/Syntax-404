@@ -8,6 +8,8 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import LoadingScreen from './components/LoadingScreen'
 
+import CustomCursor from './components/CustomCursor'
+
 // Back to Top Button Component
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,8 +40,10 @@ const BackToTop = () => {
       onClick={scrollToTop}
       aria-label="Back to top"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 4l-8 8h5v8h6v-8h5z" />
+      <span className="scroll-text">Scroll</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 19V5" />
+        <path d="M5 12l7-7 7 7" />
       </svg>
     </button>
   )
@@ -55,6 +59,25 @@ function App() {
     }, 2000)
     return () => clearTimeout(timer)
   }, [])
+
+  // Scroll Reveal Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    const sections = document.querySelectorAll('section, .reveal')
+    sections.forEach(sec => {
+      sec.classList.add('reveal') // Ensure all sections have reveal class
+      observer.observe(sec)
+    })
+
+    return () => sections.forEach(sec => observer.unobserve(sec))
+  }, [loading]) // Re-run after loading finishes
 
   // Konami Code Easter Egg
   useEffect(() => {
@@ -83,6 +106,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <Hero />
       <About />

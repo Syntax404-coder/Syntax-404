@@ -5,6 +5,15 @@ const Experience = () => {
 
   const experiences = [
     {
+      title: "Quality Assurance Tester & Full Stack Developer",
+      company: "OrthoVision (Thesis Project)",
+      details: [
+        "Architected a medical diagnostic web platform using Next.js 14 (Frontend) and FastAPI (Backend)",
+        "Integrated Computer Vision models (YOLOv8 and ResNet) to perform real-time bone fracture detection and localization",
+        "Designed a type-safe database schema and managed API integrations for seamless data flow"
+      ]
+    },
+    {
       title: "Financial Officer",
       company: "Cyb Robotics Organization (CYB:ORG)",
       location: "West Visayas State University",
@@ -12,15 +21,6 @@ const Experience = () => {
         "Managed financial resources and budget allocation for student-led robotics and fabrication projects",
         "Collaborated with the executive committee to streamline organizational workflows and event logistics",
         "Demonstrated leadership and accountability in a technical student organization environment"
-      ]
-    },
-    {
-      title: "Quality Assurance Tester & Full Stack Developer",
-      company: "OrthoVision (Thesis Project)",
-      details: [
-        "Architected a medical diagnostic web platform using Next.js 14 (Frontend) and FastAPI (Backend)",
-        "Integrated Computer Vision models (YOLOv8 and ResNet) to perform real-time bone fracture detection and localization",
-        "Designed a type-safe database schema and managed API integrations for seamless data flow"
       ]
     },
     {
@@ -73,13 +73,13 @@ const Experience = () => {
       <div className="container">
         <h2 className="section-title">Experience</h2>
         <div className="experience-carousel">
-          <div 
+          <div
             className="carousel-wrapper"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {experiences.map((exp, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="carousel-slide"
               >
                 <div className="experience-item">
@@ -102,8 +102,8 @@ const Experience = () => {
           <div className="carousel-controls">
             <div className="carousel-nav">
               <div className="nav-label">PREV</div>
-              <button 
-                className="nav-arrow nav-arrow-prev" 
+              <button
+                className="nav-arrow nav-arrow-prev"
                 onClick={prevSlide}
                 aria-label="Previous experience"
               >
@@ -112,8 +112,8 @@ const Experience = () => {
             </div>
             <div className="carousel-nav">
               <div className="nav-label">NEXT</div>
-              <button 
-                className="nav-arrow nav-arrow-next" 
+              <button
+                className="nav-arrow nav-arrow-next"
                 onClick={nextSlide}
                 aria-label="Next experience"
               >
