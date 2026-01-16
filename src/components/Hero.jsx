@@ -1,22 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import profilePhoto from './img/D.T.png'
+import cvPDF from './img/Taganahan_CV.pdf'
 
+// Custom hook for typing animation effect
+const useTypingEffect = (text, speed = 50, startDelay = 0) => {
+  const [displayedText, setDisplayedText] = useState('')
+  const [isComplete, setIsComplete] = useState(false)
+
+  useEffect(() => {
+    if (!text) return
+
+    const startTimeout = setTimeout(() => {
+      let currentIndex = 0
+      setDisplayedText('')
+
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayedText(text.slice(0, currentIndex))
+          currentIndex++
+        } else {
+          clearInterval(typingInterval)
+          setIsComplete(true)
+        }
+      }, speed)
+
+      return () => clearInterval(typingInterval)
+    }, startDelay)
+
+    return () => clearTimeout(startTimeout)
+  }, [text, speed, startDelay])
+
+  return { displayedText, isComplete }
+}
 
 const Hero = () => {
+  const junkieText = "JUNKIE"
+
+  // Only animate "JUNKIE" part of the title
+  const junkieTyping = useTypingEffect(junkieText, 100, 500)
+
   return (
     <section id="home" className="hero">
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-greeting">Hi, I'm Domenic Taganahan!</div>
           <h1 className="hero-title">
-            <span className="hero-tech">THE TECH</span> <span className="hero-junkie">JUNKIE</span>
+            <span className="hero-tech">THE TECH </span>
+            <span className="hero-junkie">
+              {junkieTyping.displayedText}
+              {!junkieTyping.isComplete && <span className="animate-pulse">|</span>}
+            </span>
           </h1>
           <p className="hero-description">
             Turning caffeine into code and wild ideas into digital reality. I build things that live on the web and sometimes breaks them too.
           </p>
           <div className="hero-buttons">
             <a href="#projects" className="btn btn-projects">PROJECTS &lt;/&gt;</a>
-            <a href="#contact" className="btn btn-hire">HIRE ME</a>
+            <a href={cvPDF} download="Domenic_Taganahan_CV.pdf" className="btn btn-hire">DOWNLOAD CV</a>
           </div>
           <div className="hero-socials">
             <a href="https://www.facebook.com/blocononico/" target="_blank" rel="noopener noreferrer" title="Facebook">

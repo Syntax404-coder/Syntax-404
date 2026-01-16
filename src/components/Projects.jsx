@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 
 import orthovisionImg from './img/Orthovision.png'
 import bentaPosImg from './img/Benta.png'
@@ -37,50 +37,46 @@ const Projects = () => {
     }
   ]
 
-  const projectCardsRef = useRef([])
+  const [filter, setFilter] = useState('All')
+  const categories = ['All', 'Mobile App', 'Computer Vision', 'Automation']
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1'
-            entry.target.style.transform = 'translateY(0)'
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
+  const getCategory = (tags) => {
+    if (tags.includes('Computer Vision')) return 'Computer Vision'
+    if (tags.includes('Flutter')) return 'Mobile App'
+    if (tags.includes('Automation')) return 'Automation'
+    return 'Other'
+  }
 
-    projectCardsRef.current.forEach((card) => {
-      if (card) {
-        card.style.opacity = '0'
-        card.style.transform = 'translateY(30px)'
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
-        observer.observe(card)
-      }
-    })
-
-    return () => {
-      projectCardsRef.current.forEach((card) => {
-        if (card) observer.unobserve(card)
-      })
-    }
-  }, [])
+  const filteredProjects = projects.filter(project => {
+    if (filter === 'All') return true
+    return getCategory(project.tags) === filter
+  })
 
   return (
     <section id="projects" className="projects">
       <div className="container">
         <h2 className="section-title">Featured Projects</h2>
+
+        <div className="project-filters" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`filter-btn ${filter === category ? 'active' : ''}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         <div className="projects-grid">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <div
-              key={index}
-              className="project-card"
-              ref={(el) => (projectCardsRef.current[index] = el)}
+              key={project.title}
+              className="project-card fade-in-section"
             >
               <div className="project-image">
-                <img src={project.image} alt={project.title} />
+                <img src={project.image} alt={project.title} loading="lazy" />
                 <div className="project-overlay">
                   <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
                 </div>
