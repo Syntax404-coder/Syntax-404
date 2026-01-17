@@ -128,7 +128,7 @@ const About = () => {
                   to create impactful solutions.
                 </p>
                 <p>
-                  My experience spans from leading AI-powered medical diagnostic platforms to developing
+                  My expertise spans from leading AI-powered medical diagnostic platforms to developing
                   cross-platform mobile applications and managing organizational resources. I thrive in
                   collaborative environments and am always eager to tackle complex technical challenges
                   while maintaining clean, scalable code architecture.
