@@ -122,10 +122,10 @@ const About = () => {
             <div className="about-content" style={{ margin: 0 }}>
               <div className="about-text">
                 <p>
-                  I'm a Computer Science student specializing in Artificial Intelligence, Machine Learning,
-                  and Computer Vision at West Visayas State University. With a passion for building intelligent
-                  systems and full-stack applications, I combine technical expertise with practical problem-solving
-                  to create impactful solutions.
+                  I am Domenic Taganahan, currently a senior computer science student at West Visayas State University majoring in Artificial Intelligence, and I describe myself as a 'quality-first' developer who specializes in using automation to make software more reliable.
+                </p>
+                <p>
+                  In my recent projects, I've moved beyond just writing code to actually building the tools that test and manage it. I recently developed custom CLI tools using PowerShell, and I have also been experimenting with Bash with my dual-boot Linux to automate repetitive technical workflows, which I'd say gave me a sharp eye for identifying edge cases where software breaks.
                 </p>
                 <p>
                   My expertise spans from leading AI-powered medical diagnostic platforms to developing
