@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Certificates from './components/Certificates'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
 
+// Feature imports
+import Hero from './features/hero/Hero'
+import About from './features/about/About'
+import Skills from './features/skills/Skills'
+import Projects from './features/projects/Projects'
+import Certificates from './features/certificates/Certificates'
+import Contact from './features/contact/Contact'
 
-
-import CustomCursor from './components/CustomCursor'
+// Shared component imports
+import Navbar from './shared/components/Navbar/Navbar'
+import CustomCursor from './shared/components/CustomCursor'
 
 // Back to Top Button Component
 const BackToTop = () => {
@@ -51,7 +52,6 @@ const BackToTop = () => {
 }
 
 function App() {
-
 
   // Scroll Reveal Observer
   useEffect(() => {
