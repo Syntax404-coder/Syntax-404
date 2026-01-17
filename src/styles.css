@@ -27,6 +27,9 @@
     --gradient-surface: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%);
     --gradient-glow: radial-gradient(circle at top left, rgba(139, 92, 246, 0.15), transparent 40%);
     --gradient-text: linear-gradient(to right, #8B5CF6, #EC4899);
+
+    /* Standardized Theme Transition */
+    --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease, box-shadow 0.3s ease;
 }
 
 html {
@@ -45,6 +48,7 @@ body {
         radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
         radial-gradient(at 100% 0%, rgba(192, 132, 252, 0.1) 0px, transparent 50%);
     background-attachment: fixed;
+    transition: var(--theme-transition);
 }
 
 .container {
@@ -54,9 +58,9 @@ body {
     padding: 0 20px;
 }
 
-/* Global smooth transitions */
+/* Global smooth transitions - Restricted to theme properties to prevent layout syncing issues */
 * {
-    transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease;
+    transition: var(--theme-transition);
 }
 
 /* Section spacing */
@@ -81,6 +85,7 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: var(--radius);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    transition: var(--theme-transition);
 }
 
 [data-theme="dark"] .card,
@@ -103,6 +108,7 @@ section {
     z-index: 1000;
     padding: 2.5rem 4rem;
     transition: all 0.3s ease;
+    /* Keep 'all' for scroll resizing, but timing matches theme */
     background: transparent;
     border-bottom: 1px solid transparent;
 }
@@ -129,11 +135,54 @@ section {
 
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     width: 100%;
+    gap: 4rem;
+    position: relative;
+}
+
+/* Left navigation group - align to end (towards center) */
+.nav-left-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+/* Center logo - positioned in the middle column */
+.nav-center-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Right navigation group - align to start (towards center) */
+.nav-right-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-right-links {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+.nav-right-actions {
+    display: flex;
+    align-items: center;
     gap: 2rem;
+    margin-left: 1.5rem;
+    padding-left: 2rem;
+    border-left: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .nav-right-actions {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-brand {
@@ -3150,5 +3199,337 @@ textarea {
 
     .explosion-sub-text .letter-explosion {
         font-size: 12vw !important;
+    }
+}
+
+/* ============================================
+   CINEMATIC LOADING SCREEN ANIMATION
+   5 Phases: circle -> shrink -> dot -> reveal -> fade
+   Total Duration: ~8 seconds
+   ============================================ */
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.loading-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-white);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .loading-bg {
+    background: #111827;
+}
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The large circle element that shrinks into the dot */
+.loading-circle-element {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* The logo wrapper containing text and dot */
+.loading-logo-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 2;
+}
+
+/* The "nico" text - hidden initially */
+.loading-text {
+    font-size: 5rem;
+    color: var(--text-dark);
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .loading-text {
+    color: white;
+}
+
+/* The dot - hidden initially, revealed when circle shrinks */
+.loading-dot {
+    font-size: 5rem;
+    color: var(--primary-color);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========== PHASE 1: CIRCLE (large, dominant, stable) ========== */
+.loading-screen.circle .loading-circle-element {
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+    box-shadow:
+        0 0 60px rgba(139, 92, 246, 0.3),
+        0 0 100px rgba(139, 92, 246, 0.15);
+}
+
+.loading-screen.circle .loading-text {
+    opacity: 0;
+    max-width: 0;
+}
+
+.loading-screen.circle .loading-dot {
+    opacity: 0;
+}
+
+/* ========== PHASE 2: SHRINK (circle slowly reduces to dot size) ========== */
+.loading-screen.shrink .loading-circle-element {
+    width: 18px;
+    height: 18px;
+    opacity: 1;
+    box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.4),
+        0 0 60px rgba(139, 92, 246, 0.2);
+    transition: all 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-screen.shrink .loading-text {
+    opacity: 0;
+    max-width: 0;
+}
+
+.loading-screen.shrink .loading-dot {
+    opacity: 0;
+}
+
+/* ========== PHASE 3: DOT (shrunk circle stays visible as dot, brief pause) ========== */
+.loading-screen.dot .loading-circle-element {
+    width: 18px;
+    height: 18px;
+    opacity: 1;
+    box-shadow:
+        0 0 20px rgba(139, 92, 246, 0.3),
+        0 0 40px rgba(139, 92, 246, 0.15);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-screen.dot .loading-dot {
+    opacity: 0;
+}
+
+.loading-screen.dot .loading-text {
+    opacity: 0;
+    max-width: 0;
+}
+
+/* ========== PHASE 4: REVEAL (text emerges leftward from dot) ========== */
+.loading-screen.reveal .loading-circle-element {
+    opacity: 0;
+    display: none;
+}
+
+.loading-screen.reveal .loading-dot {
+    opacity: 1;
+    text-shadow: none;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-screen.reveal .loading-text {
+    opacity: 1;
+    max-width: 300px;
+    transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========== PHASE 5: FADE (screen fades out) ========== */
+.loading-screen.fade {
+    pointer-events: none;
+}
+
+.loading-screen.fade .loading-bg {
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-screen.fade .loading-content {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-screen.fade .loading-circle-element {
+    opacity: 0;
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .loading-circle-element {
+        width: 80px;
+        height: 80px;
+    }
+
+    .loading-screen.shrink .loading-circle-element {
+        width: 14px;
+        height: 14px;
+    }
+
+    .loading-screen.dot .loading-circle-element {
+        width: 14px;
+        height: 14px;
+    }
+
+    .loading-text,
+    .loading-dot {
+        font-size: 3rem;
+    }
+
+    .loading-screen.reveal .loading-text {
+        max-width: 200px;
+    }
+}
+
+/* ========== LOTTIE LOADING SCREEN ========== */
+.loading-screen-lottie {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-white);
+}
+
+[data-theme="dark"] .loading-screen-lottie {
+    background: #111827;
+}
+
+.loading-lottie-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* The Lottie wrapper */
+.lottie-wrapper {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Base logo wrapper - fills the screen */
+.loading-logo-wrapper {
+    position: fixed;
+    /* Fixed to viewport */
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    /* Force on top of EVERYTHING */
+    pointer-events: none;
+}
+
+/* The dot - anchored center */
+.loading-dot {
+    font-size: 5rem;
+    color: #8b5cf6 !important;
+    /* Force purple color */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Text container */
+.loading-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    margin-right: 5px;
+    /* Spacing between text and dot */
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-text {
+    font-size: 5rem;
+    color: #1F2937;
+    /* Force dark color fallback */
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .loading-text {
+    color: white;
+}
+
+/* ========== ACTIVE PHASES ========== */
+
+/* Phase: reveal - dot scales up and text expands */
+.loading-screen-lottie.reveal .loading-dot,
+.loading-screen-lottie.fade .loading-dot {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.loading-screen-lottie.reveal .loading-text-container,
+.loading-screen-lottie.fade .loading-text-container {
+    max-width: 300px;
+    opacity: 1;
+}
+
+/* Phase: fade - entire screen fades out */
+.loading-screen-lottie.fade {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .loading-dot,
+    .loading-text {
+        font-size: 3rem;
+    }
+
+    .loading-text-container {
+        right: calc(50% + 0.3rem);
+    }
+
+    .loading-screen-lottie.reveal .loading-text-container {
+        max-width: 150px;
     }
 }

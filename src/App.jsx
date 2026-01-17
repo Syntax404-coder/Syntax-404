@@ -6,7 +6,8 @@ import Certificates from './components/Certificates'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import LoadingScreen from './components/LoadingScreen'
+
+
 
 import CustomCursor from './components/CustomCursor'
 
@@ -50,15 +51,7 @@ const BackToTop = () => {
 }
 
 function App() {
-  const [loading, setLoading] = useState(true)
 
-  // Simulate loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
 
   // Scroll Reveal Observer
   useEffect(() => {
@@ -77,7 +70,7 @@ function App() {
     })
 
     return () => sections.forEach(sec => observer.unobserve(sec))
-  }, [loading]) // Re-run after loading finishes
+  }, [])
 
   // Konami Code Easter Egg
   useEffect(() => {
@@ -99,10 +92,6 @@ function App() {
     window.addEventListener('keydown', handleKeydown)
     return () => window.removeEventListener('keydown', handleKeydown)
   }, [])
-
-  if (loading) {
-    return <LoadingScreen />
-  }
 
   return (
     <>

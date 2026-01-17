@@ -1,12 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
-const LoadingScreen = () => {
+const LoadingScreen = ({ onComplete }) => {
+    const [showLottie, setShowLottie] = useState(true)
+
+    const handleLottieComplete = () => {
+        console.log('Lottie completed')
+        setShowLottie(false) // Instant visual removal
+        if (onComplete) onComplete()
+    }
+
+    // Simple safety fallback
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (showLottie) {
+                if (onComplete) onComplete()
+            }
+        }, 5000)
+        return () => clearTimeout(timer)
+    }, [showLottie, onComplete])
+
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-[#111827]">
-            <div className="flex flex-col items-center gap-4">
-                <div className="loading-spinner"></div>
-                <p className="text-[#8B5CF6] font-semibold animate-pulse">Loading...</p>
-            </div>
+        <div style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#FFFFFF',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}>
+            {showLottie && (
+                <DotLottieReact
+                    src="/trail.json"
+                    loop={false}
+                    autoplay
+                    onComplete={handleLottieComplete}
+                    style={{ width: '300px', height: '300px' }}
+                />
+            )}
         </div>
     )
 }

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
+    </style>
+  </defs>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="bold" font-size="32" fill="#000000">
+    NICO<tspan fill="#8b5cf6">.</tspan>
+  </text>
+</svg>
