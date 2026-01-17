@@ -68,7 +68,7 @@ const About = () => {
     }, [])
 
     return (
-        <section id="about" className="about" style={{ paddingTop: '60px' }}>
+        <section id="about" className="about" style={{ paddingTop: '160px' }}>
             <div className="container">
                 <div className="about-split-layout">
 

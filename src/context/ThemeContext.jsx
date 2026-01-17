@@ -11,14 +11,10 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }) => {
-    const [isDark, setIsDark] = useState(() => {
-        const saved = localStorage.getItem('theme')
-        if (saved) return saved === 'dark'
-        return window.matchMedia('(prefers-color-scheme: dark)').matches
-    })
+    // Always initialize to light mode (false) as requested, ignoring system preference or saved state
+    const [isDark, setIsDark] = useState(false)
 
     useEffect(() => {
-        localStorage.setItem('theme', isDark ? 'dark' : 'light')
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
     }, [isDark])
 
