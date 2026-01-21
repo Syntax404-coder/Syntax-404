@@ -161,7 +161,7 @@ const About = () => {
                                             className="stat-item"
                                             ref={(el) => (statItemsRef.current[1] = el)}
                                         >
-                                            <div className="stat-number">Quality Assurance</div>
+                                            <div className="stat-number">Full-stack Development</div>
                                             <div className="stat-label">Specialization</div>
                                         </div>
                                         <div
