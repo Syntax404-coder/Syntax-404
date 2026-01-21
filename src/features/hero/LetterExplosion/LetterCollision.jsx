@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LetterDisplay } from './LetterDisplay';
@@ -18,46 +18,34 @@ function getRandomRotation() {
     return Math.random() * 60 - 30;
 }
 
-function animateLettersOnScroll(ref) {
-    const nodes = ref.current?.querySelectorAll('.letter-explosion') || [];
-    nodes.forEach(letter => {
-        const speed = parseFloat(letter.dataset.speed || '1');
-        gsap.to(letter, {
-            // y-offset = sensible fixed drift to prevent "breaking" layout
-            y: (1 - speed) * 400,
-            rotation: getRandomRotation(),
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: document.documentElement,
-                start: 0,
-                end: '1000px', // Animation finishes in first 1000px of scroll
-                scrub: 1,      // Smoother scrub
-                invalidateOnRefresh: true
-            }
-        });
-    });
-}
+
 
 export function LetterCollision() {
     const ref = useRef(null);
 
-    useEffect(() => {
-        if (!ref.current) return;
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            // Slight delay to ensure layout is ready
+            const nodes = ref.current?.querySelectorAll('.letter-explosion') || [];
+            nodes.forEach(letter => {
+                const speed = parseFloat(letter.dataset.speed || '1');
+                gsap.to(letter, {
+                    // y-offset = sensible fixed drift to prevent "breaking" layout
+                    y: (1 - speed) * 400,
+                    rotation: getRandomRotation(),
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: document.documentElement,
+                        start: 0,
+                        end: '1000px', // Animation finishes in first 1000px of scroll
+                        scrub: 1,      // Smoother scrub
+                        invalidateOnRefresh: true
+                    }
+                });
+            });
+        }, ref);
 
-        // Slight delay to ensure layout is ready
-        const timer = setTimeout(() => {
-            animateLettersOnScroll(ref);
-        }, 100);
-
-        const refreshHandler = () => ScrollTrigger.refresh();
-        ScrollTrigger.addEventListener('refreshInit', refreshHandler);
-
-        return () => {
-            clearTimeout(timer);
-            ScrollTrigger.removeEventListener('refreshInit', refreshHandler);
-            // Clean up GSAP instances
-            ScrollTrigger.getAll().forEach(st => st.kill());
-        };
+        return () => ctx.revert();
     }, []);
 
     return (

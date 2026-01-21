@@ -65,6 +65,9 @@ function App() {
 
     const sections = document.querySelectorAll('section, .reveal')
     sections.forEach(sec => {
+      // Skip the letter explosion container so its own animations aren't overridden
+      if (sec.classList.contains('letter-explosion-container')) return
+
       sec.classList.add('reveal') // Ensure all sections have reveal class
       observer.observe(sec)
     })
