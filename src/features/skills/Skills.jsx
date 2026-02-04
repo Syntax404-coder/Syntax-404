@@ -136,7 +136,7 @@ const Skills = () => {
                                     />
                                     <circle
                                         className="progress-ring-circle"
-                                        stroke="url(#gradient)"
+                                        stroke="#8B5CF6"
                                         strokeWidth="8"
                                         fill="transparent"
                                         r={radius}
@@ -149,12 +149,6 @@ const Skills = () => {
                                             transition: 'stroke-dashoffset 1.5s ease-in-out'
                                         }}
                                     />
-                                    <defs>
-                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stopColor="#8B5CF6" />
-                                            <stop offset="100%" stopColor="#7C3AED" />
-                                        </linearGradient>
-                                    </defs>
                                 </svg>
                                 <div className="circular-skill-info">
                                     <span className="circular-skill-percentage">{bar.percentage}%</span>
