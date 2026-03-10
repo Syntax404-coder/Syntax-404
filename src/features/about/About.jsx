@@ -125,10 +125,6 @@ const About = () => {
                             <h3 className="bento-stat-number">2026</h3>
                             <p className="bento-stat-label">Expected Graduation</p>
                         </div>
-                        <div className="bento-stat-content">
-                            <h3 className="bento-stat-number">486+</h3>
-                            <p className="bento-stat-label">Internship Hours Ready</p>
-                        </div>
                     </article>
 
                     {/* EDITORIAL MODULE (Spans 8) */}
@@ -145,17 +141,11 @@ const About = () => {
                     </article>
 
                     {/* EDUCATION MODULE (Spans 4) */}
-                    <article className="bento-module bento-education">
+                    <article className="bento-module bento-education" style={{ '--edu-bg': `url(${wvsuLogo})` }}>
                         <div className="bento-education-content">
-                            <div className="bento-education-header">
-                                <img src={wvsuLogo} alt="WVSU Logo" className="bento-education-logo" />
-                                <div>
-                                    <h3 className="bento-education-title">Education</h3>
-                                    <h4 className="bento-education-degree">BS Computer Science - Major in Artificial Intelligence</h4>
-                                    <p className="bento-education-school">West Visayas State University</p>
-                                </div>
-                            </div>
-
+                            <h3 className="bento-education-title">Education</h3>
+                            <h4 className="bento-education-degree">BS Computer Science - Major in Artificial Intelligence</h4>
+                            <p className="bento-education-school">West Visayas State University</p>
                             
                             <div className="bento-education-details">
                                 <p><strong>Specialization:</strong><br/>Artificial Intelligence, Machine Learning, and Computer Vision</p>
