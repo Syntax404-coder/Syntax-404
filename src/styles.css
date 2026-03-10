@@ -3205,9 +3205,23 @@ textarea {
     margin-bottom: 0;
 }
 
+.bento-education-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.bento-education-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 8px; /* Optional, just looks nice if background has bounding box */
+}
+
 .bento-education-title {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--bento-text);
 }
 
@@ -3220,7 +3234,7 @@ textarea {
 .bento-education-school {
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-size: 0.95rem;
 }
 

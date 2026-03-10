@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import profilePhoto from '../../assets/D.T.png'
 import cvPDF from '../../assets/Taganahan_CV.pdf'
+import wvsuLogo from '../../components/img/wvsu_logo.png'
 
 // Custom hook for typing animation effect
 const useTypingEffect = (text, speed = 50, startDelay = 0) => {
@@ -146,9 +147,15 @@ const About = () => {
                     {/* EDUCATION MODULE (Spans 4) */}
                     <article className="bento-module bento-education">
                         <div className="bento-education-content">
-                            <h3 className="bento-education-title">Education</h3>
-                            <h4 className="bento-education-degree">BS Computer Science - Major in Artificial Intelligence</h4>
-                            <p className="bento-education-school">West Visayas State University</p>
+                            <div className="bento-education-header">
+                                <img src={wvsuLogo} alt="WVSU Logo" className="bento-education-logo" />
+                                <div>
+                                    <h3 className="bento-education-title">Education</h3>
+                                    <h4 className="bento-education-degree">BS Computer Science - Major in Artificial Intelligence</h4>
+                                    <p className="bento-education-school">West Visayas State University</p>
+                                </div>
+                            </div>
+
                             
                             <div className="bento-education-details">
                                 <p><strong>Specialization:</strong><br/>Artificial Intelligence, Machine Learning, and Computer Vision</p>
