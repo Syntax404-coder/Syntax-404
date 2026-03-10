@@ -50,7 +50,7 @@
 /* View Container */
 .view-container {
     min-height: 100vh;
-    padding-top: 80px;
+    padding-top: 60px;
     position: relative;
 }
 
@@ -71,7 +71,11 @@
 }
 
 /* Reset and Base Styles */
-* {
+html {
+    font-size: 75%;
+}
+
+*  {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -123,7 +127,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
@@ -844,8 +848,8 @@ section {
 }
 
 .profile-photo {
-    width: 450px;
-    height: 450px;
+    width: 338px;
+    height: 338px;
     border-radius: 50%;
     margin-top: -50px;
     /* Move image higher */
@@ -854,7 +858,7 @@ section {
     margin-right: 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     animation: bounce 3s ease-in-out infinite;
-    background-color: #8b5cf6;
+    background-color: #2563EB;
 }
 
 .btn {
@@ -2088,7 +2092,7 @@ section {
     }
 
     .profile-photo {
-        width: 280px;
+        width: 210px;
         height: auto;
     }
 
@@ -3225,8 +3229,8 @@ textarea {
     }
 
     .about-profile-wrapper .profile-photo {
-        width: 280px;
-        height: 280px;
+        width: 210px;
+        height: 210px;
     }
 }
 
@@ -3238,7 +3242,7 @@ textarea {
 }
 
 .contact-new .container {
-    max-width: 1000px;
+    max-width: 750px;
     margin: 0 auto;
     text-align: center;
 }
@@ -3295,8 +3299,8 @@ textarea {
 }
 
 .contact-card-icon {
-    width: 70px;
-    height: 70px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: var(--primary-color);
     color: white;
@@ -3462,8 +3466,8 @@ textarea {
 /* The large circle element that shrinks into the dot */
 .loading-circle-element {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     background: var(--primary-color);
     border-radius: 50%;
     opacity: 1;
@@ -3613,8 +3617,8 @@ textarea {
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
     .loading-circle-element {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
 
     .loading-screen.shrink .loading-circle-element {

@@ -119,29 +119,29 @@ const Skills = () => {
                 </div>
                 <div className="skills-circular-bars" ref={skillsSectionRef}>
                     {skillBars.map((bar, index) => {
-                        const radius = 45
+                        const radius = 34
                         const circumference = radius * 2 * Math.PI
 
                         return (
                             <div key={index} className="circular-skill-item">
-                                <svg className="progress-ring" width="120" height="120">
+                                <svg className="progress-ring" width="90" height="90">
                                     <circle
                                         className="progress-ring-bg"
                                         stroke="#E5E7EB"
-                                        strokeWidth="8"
+                                        strokeWidth="6"
                                         fill="transparent"
                                         r={radius}
-                                        cx="60"
-                                        cy="60"
+                                        cx="45"
+                                        cy="45"
                                     />
                                     <circle
                                         className="progress-ring-circle"
                                         stroke="#2563EB"
-                                        strokeWidth="8"
+                                        strokeWidth="6"
                                         fill="transparent"
                                         r={radius}
-                                        cx="60"
-                                        cy="60"
+                                        cx="45"
+                                        cy="45"
                                         data-percentage={bar.percentage}
                                         style={{
                                             strokeDasharray: `${circumference} ${circumference}`,
