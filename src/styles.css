@@ -3858,3 +3858,79 @@ textarea {
         max-width: 150px;
     }
 }
+
+/* Commit QoL #2: Weekly Task Layout */
+#weekly-tasks {
+  margin-top: 100px;
+}
+
+.QoL-2-status-board {
+  display: grid;
+  grid-template-areas: 
+    "main main side"
+    "footer footer footer";
+  grid-gap: 30px;
+}
+
+.QoL-2-task-card {
+  border-top: 2px solid var(--text-dark); /* Clean editorial line */
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .QoL-2-task-card {
+  border-top: 2px solid var(--text-light);
+}
+
+.QoL-2-task-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.QoL-2-area-main { grid-area: main; }
+.QoL-2-area-side { 
+  grid-area: side; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px;
+}
+.QoL-2-area-footer { grid-area: footer; }
+
+.QoL-2-priority {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.QoL-2-status-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--bento-slate, #5a646e);
+  margin-bottom: 1rem;
+}
+
+.QoL-2-divider {
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin: 10px 0;
+}
+
+[data-theme="dark"] .QoL-2-divider {
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .QoL-2-status-board {
+    grid-template-areas: 
+      "main"
+      "side"
+      "footer";
+  }
+}
