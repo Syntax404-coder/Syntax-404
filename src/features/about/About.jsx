@@ -72,15 +72,15 @@ const About = () => {
             <div className="container">
                 <h2 className="section-title">About Me</h2>
 
-                <div className="about-layout-new">
+                <div className="about-bento-grid">
                     
-                    {/* INTRO BLOCK: Photo + Identity */}
-                    <div className="about-intro">
-                        <div className="about-profile-wrapper">
+                    {/* HERO MODULE (Spans 8) */}
+                    <article className="bento-module bento-hero">
+                        <figure className="bento-profile-wrapper">
                             <img src={profilePhoto} alt="Domenic Taganahan" className="profile-photo blob-morph" />
-                        </div>
+                        </figure>
 
-                        <div className="about-identity">
+                        <div className="bento-identity">
                             <div className="hero-greeting">Hi, I'm Domenic Taganahan!</div>
                             <h1 className="hero-title compact">
                                 <span className="hero-tech">THE TECH </span>
@@ -116,68 +116,58 @@ const About = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
-                    {/* DETAILS BLOCK: Paragraphs */}
-                    <div className="about-details">
-                        <p>
-                            I am Domenic Taganahan, currently a senior computer science student at West Visayas State University majoring in Artificial Intelligence, and I describe myself as a 'quality-first' developer who specializes in using automation to make software more reliable.
+                    {/* STATS MODULE (Spans 4) */}
+                    <article className="bento-module bento-stat-hero">
+                        <div className="bento-stat-content">
+                            <h3 className="bento-stat-number">2026</h3>
+                            <p className="bento-stat-label">Expected Graduation</p>
+                        </div>
+                        <div className="bento-stat-content">
+                            <h3 className="bento-stat-number">486+</h3>
+                            <p className="bento-stat-label">Internship Hours Ready</p>
+                        </div>
+                    </article>
+
+                    {/* EDITORIAL MODULE (Spans 8) */}
+                    <article className="bento-module bento-editorial">
+                        <p className="bento-editorial-intro">
+                            <strong>I am Domenic Taganahan</strong>, currently a senior computer science student at West Visayas State University majoring in Artificial Intelligence. I describe myself as a 'quality-first' developer who specializes in using automation to make software more reliable.
                         </p>
                         <p>
                             In my recent projects, I've moved beyond just writing code to actually building the tools that test and manage it. I recently developed custom CLI tools using PowerShell, and I have also been experimenting with Bash with my dual-boot Linux to automate repetitive technical workflows, which I'd say gave me a sharp eye for identifying edge cases where software breaks.
                         </p>
                         <p>
-                            My expertise spans from leading AI-powered medical diagnostic platforms to developing
-                            cross-platform mobile applications and managing organizational resources. I thrive in
-                            collaborative environments and am always eager to tackle complex technical challenges
-                            while maintaining clean, scalable code architecture.
+                            My expertise spans from leading AI-powered medical diagnostic platforms to developing cross-platform mobile applications and managing organizational resources. I thrive in collaborative environments and am always eager to tackle complex technical challenges while maintaining clean, scalable code architecture.
                         </p>
-                    </div>
+                    </article>
 
-                    {/* HIGHLIGHTS BLOCK: Education + Stats */}
-                    <div className="about-highlights">
-                        
-                        <div className="education-info">
-                            <h3>Education</h3>
-                            <div className="education-item">
-                                <h4>BS Computer Science - Major in Artificial Intelligence</h4>
-                                <p className="education-institution">West Visayas State University</p>
-                                <p className="education-details">Expected Graduation: 2026</p>
-                                <p className="education-specialization">
-                                    <strong>Specialization:</strong> Artificial Intelligence, Machine Learning, and Computer Vision
-                                </p>
-                                <p className="education-courses">
-                                    <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Systems Architecture,
-                                    Software Engineering, Linear Programming
-                                </p>
+                    {/* EDUCATION MODULE (Spans 4) */}
+                    <article className="bento-module bento-education">
+                        <div className="bento-education-content">
+                            <h3 className="bento-education-title">Education</h3>
+                            <h4 className="bento-education-degree">BS Computer Science - Major in Artificial Intelligence</h4>
+                            <p className="bento-education-school">West Visayas State University</p>
+                            
+                            <div className="bento-education-details">
+                                <p><strong>Specialization:</strong><br/>Artificial Intelligence, Machine Learning, and Computer Vision</p>
+                                <p><strong>Relevant Coursework:</strong><br/>Data Structures & Algorithms, Systems Architecture, Software Engineering, Linear Programming</p>
                             </div>
                         </div>
+                    </article>
 
-                        <div className="about-stats">
-                            <div
-                                className="stat-item"
-                                ref={(el) => (statItemsRef.current[0] = el)}
-                            >
-                                <div className="stat-number">2026</div>
-                                <div className="stat-label">Expected Graduation</div>
-                            </div>
-                            <div
-                                className="stat-item"
-                                ref={(el) => (statItemsRef.current[1] = el)}
-                            >
-                                <div className="stat-number">Full-stack Development</div>
-                                <div className="stat-label">Specialization</div>
-                            </div>
-                            <div
-                                className="stat-item"
-                                ref={(el) => (statItemsRef.current[2] = el)}
-                            >
-                                <div className="stat-number">DevSecOps</div>
-                                <div className="stat-label">Development Focus</div>
-                            </div>
-                        </div>
+                    {/* SKILL HIGHLIGHTS (Span 6 + Span 6, or nested grid) */}
+                    <article className="bento-module bento-highlight" ref={(el) => (statItemsRef.current[1] = el)}>
+                        <h4 className="bento-highlight-title">Specialization</h4>
+                        <p className="bento-highlight-desc">Full-stack Development</p>
+                    </article>
 
-                    </div>
+                    <article className="bento-module bento-highlight" ref={(el) => (statItemsRef.current[2] = el)}>
+                        <h4 className="bento-highlight-title">Development Focus</h4>
+                        <p className="bento-highlight-desc">DevSecOps</p>
+                    </article>
+
                 </div>
             </div>
         </section>
