@@ -848,8 +848,8 @@ section {
 }
 
 .profile-photo {
-    width: 338px;
-    height: 338px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     margin-top: -50px;
     /* Move image higher */
@@ -1035,8 +1035,8 @@ section {
 .about-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1rem;
+    margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -1048,7 +1048,7 @@ section {
 
 .stat-item {
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     background: var(--bg-light);
     border-radius: 12px;
     transition: transform 0.3s ease;
@@ -1059,7 +1059,7 @@ section {
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
@@ -1071,8 +1071,8 @@ section {
 }
 
 .education-info {
-    margin-top: 2rem;
-    padding: 2rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
     background: var(--bg-light);
     border-radius: 12px;
     position: relative;
@@ -2092,7 +2092,7 @@ section {
     }
 
     .profile-photo {
-        width: 210px;
+        width: 180px;
         height: auto;
     }
 
@@ -3041,7 +3041,7 @@ textarea {
     grid-template-columns: 40% 55%;
     gap: 5%;
     align-items: flex-start;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
     position: relative;
 }
 
@@ -3229,8 +3229,8 @@ textarea {
     }
 
     .about-profile-wrapper .profile-photo {
-        width: 210px;
-        height: 210px;
+        width: 180px;
+        height: 180px;
     }
 }
 

@@ -21,7 +21,12 @@ const ViewSwitcher = () => {
     if (isLoading) return null
 
     const viewMap = {
-        [VIEW_IDS.HOME]: <Hero />,
+        [VIEW_IDS.HOME]: (
+            <>
+                <Hero />
+                <About />
+            </>
+        ),
         [VIEW_IDS.ABOUT]: <About />,
         [VIEW_IDS.CERTIFICATES]: <Certificates />,
         [VIEW_IDS.SKILLS]: <Skills />,
@@ -29,7 +34,12 @@ const ViewSwitcher = () => {
         [VIEW_IDS.CONTACT]: <Contact />,
     }
 
-    const CurrentView = viewMap[activeView] || <Hero />
+    const CurrentView = viewMap[activeView] || (
+        <>
+            <Hero />
+            <About />
+        </>
+    )
 
     return (
         <Suspense fallback={null}>
