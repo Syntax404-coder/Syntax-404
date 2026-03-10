@@ -159,50 +159,6 @@ const Skills = () => {
                     })}
                 </div>
             </div>
-
-            {/* Commit QoL #2: Weekly Task Layout */}
-            <section id="weekly-tasks" className="QoL-2-weekly-tasks">
-                <div className="container">
-                    <h2 className="section-title">Weekly Tasks</h2>
-                    
-                    <div className="QoL-2-status-board">
-                        
-                        {/* Main Area: Core Development */}
-                        <article className="QoL-2-task-card QoL-2-area-main">
-                            <div className="QoL-2-priority">01</div>
-                            <h3>Core Development</h3>
-                            <span className="QoL-2-status-label">Active</span>
-                            <p>Focusing on Ruby data structures and Generative AI prompt engineering.</p>
-                        </article>
-
-                        {/* Side Area: Infrastructure Maintenance */}
-                        <article className="QoL-2-task-card QoL-2-area-side">
-                            <div className="QoL-2-sub-card">
-                                <div className="QoL-2-priority">02</div>
-                                <h3>Infra: K8s</h3>
-                                <span className="QoL-2-status-label">Optimized</span>
-                                <p>Kubernetes orchestration.</p>
-                            </div>
-                            <hr className="QoL-2-divider" />
-                            <div className="QoL-2-sub-card">
-                                <div className="QoL-2-priority">03</div>
-                                <h3>Infra: Docker</h3>
-                                <span className="QoL-2-status-label">Deployed</span>
-                                <p>Docker container auditing.</p>
-                            </div>
-                        </article>
-
-                        {/* Footer Area: Professional Development */}
-                        <article className="QoL-2-task-card QoL-2-area-footer">
-                            <div className="QoL-2-priority">04</div>
-                            <h3>Professional Development</h3>
-                            <span className="QoL-2-status-label">In Progress</span>
-                            <p>Tracking progress on the 2026 AWS and Microsoft/LinkedIn AI badges.</p>
-                        </article>
-
-                    </div>
-                </div>
-            </section>
         </section>
     )
 }
