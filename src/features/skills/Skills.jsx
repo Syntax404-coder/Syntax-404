@@ -136,7 +136,7 @@ const Skills = () => {
                                     />
                                     <circle
                                         className="progress-ring-circle"
-                                        stroke="#8B5CF6"
+                                        stroke="#2563EB"
                                         strokeWidth="8"
                                         fill="transparent"
                                         r={radius}

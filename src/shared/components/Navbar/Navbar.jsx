@@ -1,46 +1,73 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ThemeToggle from '../ThemeToggle'
+import { useView, VIEW_IDS } from '../../context/ViewContext'
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+    const { activeView, changeView } = useView()
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
     }
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
-        }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    const handleNav = (viewId) => {
+        changeView(viewId)
+        setIsOpen(false)
+    }
+
+    const navItems = [
+        { id: VIEW_IDS.HOME, label: 'Home' },
+        { id: VIEW_IDS.ABOUT, label: 'About' },
+        { id: VIEW_IDS.CERTIFICATES, label: 'Certificates' },
+        { id: VIEW_IDS.SKILLS, label: 'Skills' },
+        { id: VIEW_IDS.PROJECTS, label: 'Projects' },
+        { id: VIEW_IDS.CONTACT, label: 'Contact' },
+    ]
+
+    const leftNav = navItems.slice(0, 3)
+    const rightNav = navItems.slice(3)
 
     return (
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className="navbar scrolled">
             <div className="nav-container">
 
                 {/* Left Navigation Group - Hidden on Mobile */}
                 <div className="nav-left-group hidden-mobile">
-                    <a href="#home" className="nav-link">Home</a>
-                    <a href="#about" className="nav-link">About</a>
-                    <a href="#certificates" className="nav-link">Certificates</a>
+                    {leftNav.map((item) => (
+                        <button
+                            key={item.id}
+                            onClick={() => handleNav(item.id)}
+                            className={`nav-link ${activeView === item.id ? 'active' : ''}`}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
+                        >
+                            {item.label}
+                        </button>
+                    ))}
                 </div>
 
                 {/* Center Logo */}
                 <div className="nav-center-logo">
-                    <a href="#home" style={{ textDecoration: 'none' }}>
+                    <button
+                        onClick={() => handleNav(VIEW_IDS.HOME)}
+                        style={{ textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
                         <div className="nav-brand">NICO<span className="dot">.</span></div>
-                    </a>
+                    </button>
                 </div>
 
                 {/* Right Navigation Group - Hidden on Mobile */}
                 <div className="nav-right-group hidden-mobile">
                     <div className="nav-right-links">
-                        <a href="#skills" className="nav-link">Skills</a>
-                        <a href="#projects" className="nav-link">Projects</a>
-                        <a href="#contact" className="nav-link">Contact</a>
+                        {rightNav.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => handleNav(item.id)}
+                                className={`nav-link ${activeView === item.id ? 'active' : ''}`}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
                     </div>
                     <div className="nav-right-actions">
                         <ThemeToggle />
@@ -54,8 +81,8 @@ const Navbar = () => {
                 </div>
 
                 {/* Hamburger Menu Button - Visible on Mobile */}
-                <button 
-                    className={`hamburger ${isOpen ? 'active' : ''}`} 
+                <button
+                    className={`hamburger ${isOpen ? 'active' : ''}`}
                     onClick={toggleMenu}
                     aria-label="Toggle menu"
                 >
@@ -67,15 +94,19 @@ const Navbar = () => {
                 {/* Mobile Menu Overlay */}
                 <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
                     <div className="mobile-menu-links">
-                        <a href="#home" onClick={toggleMenu}>Home</a>
-                        <a href="#about" onClick={toggleMenu}>About</a>
-                        <a href="#certificates" onClick={toggleMenu}>Certificates</a>
-                        <a href="#skills" onClick={toggleMenu}>Skills</a>
-                        <a href="#projects" onClick={toggleMenu}>Projects</a>
-                        <a href="#contact" onClick={toggleMenu}>Contact</a>
+                        {navItems.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => handleNav(item.id)}
+                                className={activeView === item.id ? 'active' : ''}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit', color: 'inherit' }}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
                         <div className="mobile-actions">
-                             <ThemeToggle />
-                             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=domenictaganahan@gmail.com" target="_blank" rel="noopener noreferrer" className="mobile-contact-btn">
+                            <ThemeToggle />
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=domenictaganahan@gmail.com" target="_blank" rel="noopener noreferrer" className="mobile-contact-btn">
                                 Let's Talk
                             </a>
                         </div>

@@ -1,114 +1,56 @@
-import React, { useState, useEffect } from 'react'
+import React, { lazy, Suspense } from 'react'
+import { useView, VIEW_IDS } from './shared/context/ViewContext'
 
-// Feature imports
-import Hero from './features/hero/Hero'
-import About from './features/about/About'
-import Skills from './features/skills/Skills'
-import Projects from './features/projects/Projects'
-import Certificates from './features/certificates/Certificates'
-import Contact from './features/contact/Contact'
-
-// Shared component imports
+// Eager-loaded components
 import Navbar from './shared/components/Navbar/Navbar'
 import CustomCursor from './shared/components/CustomCursor'
+import PurpleLoader from './shared/components/PurpleLoader'
+import Hero from './features/hero/Hero'
 
-// Back to Top Button Component
-const BackToTop = () => {
-  const [isVisible, setIsVisible] = useState(false)
+// Lazy-loaded views
+const About = lazy(() => import('./features/about/About'))
+const Certificates = lazy(() => import('./features/certificates/Certificates'))
+const Skills = lazy(() => import('./features/skills/Skills'))
+const Projects = lazy(() => import('./features/projects/Projects'))
+const Contact = lazy(() => import('./features/contact/Contact'))
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
+// View Switcher — maps activeView ID to the correct component
+const ViewSwitcher = () => {
+    const { activeView, isLoading } = useView()
+
+    if (isLoading) return null
+
+    const viewMap = {
+        [VIEW_IDS.HOME]: <Hero />,
+        [VIEW_IDS.ABOUT]: <About />,
+        [VIEW_IDS.CERTIFICATES]: <Certificates />,
+        [VIEW_IDS.SKILLS]: <Skills />,
+        [VIEW_IDS.PROJECTS]: <Projects />,
+        [VIEW_IDS.CONTACT]: <Contact />,
     }
 
-    window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+    const CurrentView = viewMap[activeView] || <Hero />
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
-  return (
-    <button
-      className={`back-to-top ${isVisible ? 'visible' : ''}`}
-      onClick={scrollToTop}
-      aria-label="Back to top"
-    >
-      <span className="scroll-text">Scroll</span>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 19V5" />
-        <path d="M5 12l7-7 7 7" />
-      </svg>
-    </button>
-  )
+    return (
+        <Suspense fallback={null}>
+            <div className="view-enter" key={activeView}>
+                {CurrentView}
+            </div>
+        </Suspense>
+    )
 }
 
 function App() {
-
-  // Scroll Reveal Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active')
-        }
-      })
-    }, { threshold: 0.1 })
-
-    const sections = document.querySelectorAll('section, .reveal')
-    sections.forEach(sec => {
-      // Skip the letter explosion container so its own animations aren't overridden
-      if (sec.classList.contains('letter-explosion-container')) return
-
-      sec.classList.add('reveal') // Ensure all sections have reveal class
-      observer.observe(sec)
-    })
-
-    return () => sections.forEach(sec => observer.unobserve(sec))
-  }, [])
-
-  // Konami Code Easter Egg
-  useEffect(() => {
-    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
-    let konamiIndex = 0
-
-    const handleKeydown = (e) => {
-      if (e.key === konamiCode[konamiIndex]) {
-        konamiIndex++
-        if (konamiIndex === konamiCode.length) {
-          alert('🚀 KONAMI CODE ACTIVATED! You are a true nerd!')
-          konamiIndex = 0
-        }
-      } else {
-        konamiIndex = 0
-      }
-    }
-
-    window.addEventListener('keydown', handleKeydown)
-    return () => window.removeEventListener('keydown', handleKeydown)
-  }, [])
-
-  return (
-    <>
-      <CustomCursor />
-      <Navbar />
-      <Hero />
-      <About />
-      <Certificates />
-      <Skills />
-      <Projects />
-      <Contact />
-      <BackToTop />
-    </>
-  )
+    return (
+        <>
+            <CustomCursor />
+            <Navbar />
+            <PurpleLoader />
+            <div className="view-container">
+                <ViewSwitcher />
+            </div>
+        </>
+    )
 }
 
 export default App
