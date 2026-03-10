@@ -68,12 +68,14 @@ const About = () => {
     }, [])
 
     return (
-        <section id="about" className="about" style={{ paddingTop: '60px' }}>
+        <section id="about" className="about" style={{ paddingTop: '60px', paddingBottom: '4rem' }}>
             <div className="container">
-                <div className="about-split-layout">
+                <h2 className="section-title">About Me</h2>
 
-                    {/* LEFT PANE: Identity (Photo + Intro) */}
-                    <div className="about-left-pane">
+                <div className="about-layout-new">
+                    
+                    {/* INTRO BLOCK: Photo + Identity */}
+                    <div className="about-intro">
                         <div className="about-profile-wrapper">
                             <img src={profilePhoto} alt="Domenic Taganahan" className="profile-photo blob-morph" />
                         </div>
@@ -116,67 +118,66 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* RIGHT PANE: About Details */}
-                    <div className="about-right-pane">
-                        <h2 className="section-title">About Me</h2>
-                        <div className="about-content" style={{ margin: 0 }}>
-                            <div className="about-text">
-                                <p>
-                                    I am Domenic Taganahan, currently a senior computer science student at West Visayas State University majoring in Artificial Intelligence, and I describe myself as a 'quality-first' developer who specializes in using automation to make software more reliable.
-                                </p>
-                                <p>
-                                    In my recent projects, I've moved beyond just writing code to actually building the tools that test and manage it. I recently developed custom CLI tools using PowerShell, and I have also been experimenting with Bash with my dual-boot Linux to automate repetitive technical workflows, which I'd say gave me a sharp eye for identifying edge cases where software breaks.
-                                </p>
-                                <p>
-                                    My expertise spans from leading AI-powered medical diagnostic platforms to developing
-                                    cross-platform mobile applications and managing organizational resources. I thrive in
-                                    collaborative environments and am always eager to tackle complex technical challenges
-                                    while maintaining clean, scalable code architecture.
-                                </p>
-                                <div className="education-info">
-                                    <h3>Education</h3>
-                                    <div className="education-item">
-                                        <h4>BS Computer Science - Major in Artificial Intelligence</h4>
-                                        <p className="education-institution">West Visayas State University</p>
-                                        <p className="education-details">Expected Graduation: 2026</p>
-                                        <p className="education-specialization">
-                                            <strong>Specialization:</strong> Artificial Intelligence, Machine Learning, and Computer Vision
-                                        </p>
-                                        <p className="education-courses">
-                                            <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Systems Architecture,
-                                            Software Engineering, Linear Programming
-                                        </p>
-                                    </div>
-
-                                    {/* Merged Stats */}
-                                    <div className="about-stats" style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-                                        <div
-                                            className="stat-item"
-                                            ref={(el) => (statItemsRef.current[0] = el)}
-                                        >
-                                            <div className="stat-number">2026</div>
-                                            <div className="stat-label">Expected Graduation</div>
-                                        </div>
-                                        <div
-                                            className="stat-item"
-                                            ref={(el) => (statItemsRef.current[1] = el)}
-                                        >
-                                            <div className="stat-number">Full-stack Development</div>
-                                            <div className="stat-label">Specialization</div>
-                                        </div>
-                                        <div
-                                            className="stat-item"
-                                            ref={(el) => (statItemsRef.current[2] = el)}
-                                        >
-                                            <div className="stat-number">DevSecOps</div>
-                                            <div className="stat-label">Development Focus</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    {/* DETAILS BLOCK: Paragraphs */}
+                    <div className="about-details">
+                        <p>
+                            I am Domenic Taganahan, currently a senior computer science student at West Visayas State University majoring in Artificial Intelligence, and I describe myself as a 'quality-first' developer who specializes in using automation to make software more reliable.
+                        </p>
+                        <p>
+                            In my recent projects, I've moved beyond just writing code to actually building the tools that test and manage it. I recently developed custom CLI tools using PowerShell, and I have also been experimenting with Bash with my dual-boot Linux to automate repetitive technical workflows, which I'd say gave me a sharp eye for identifying edge cases where software breaks.
+                        </p>
+                        <p>
+                            My expertise spans from leading AI-powered medical diagnostic platforms to developing
+                            cross-platform mobile applications and managing organizational resources. I thrive in
+                            collaborative environments and am always eager to tackle complex technical challenges
+                            while maintaining clean, scalable code architecture.
+                        </p>
                     </div>
 
+                    {/* HIGHLIGHTS BLOCK: Education + Stats */}
+                    <div className="about-highlights">
+                        
+                        <div className="education-info">
+                            <h3>Education</h3>
+                            <div className="education-item">
+                                <h4>BS Computer Science - Major in Artificial Intelligence</h4>
+                                <p className="education-institution">West Visayas State University</p>
+                                <p className="education-details">Expected Graduation: 2026</p>
+                                <p className="education-specialization">
+                                    <strong>Specialization:</strong> Artificial Intelligence, Machine Learning, and Computer Vision
+                                </p>
+                                <p className="education-courses">
+                                    <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Systems Architecture,
+                                    Software Engineering, Linear Programming
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="about-stats">
+                            <div
+                                className="stat-item"
+                                ref={(el) => (statItemsRef.current[0] = el)}
+                            >
+                                <div className="stat-number">2026</div>
+                                <div className="stat-label">Expected Graduation</div>
+                            </div>
+                            <div
+                                className="stat-item"
+                                ref={(el) => (statItemsRef.current[1] = el)}
+                            >
+                                <div className="stat-number">Full-stack Development</div>
+                                <div className="stat-label">Specialization</div>
+                            </div>
+                            <div
+                                className="stat-item"
+                                ref={(el) => (statItemsRef.current[2] = el)}
+                            >
+                                <div className="stat-number">DevSecOps</div>
+                                <div className="stat-label">Development Focus</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
