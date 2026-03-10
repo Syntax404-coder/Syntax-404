@@ -123,6 +123,7 @@ body {
     overflow-x: hidden;
     background: #FFFFFF;
     transition: var(--theme-transition);
+    cursor: none;
 }
 
 .container {
@@ -135,6 +136,11 @@ body {
 /* Global smooth transitions - Restricted to theme properties to prevent layout syncing issues */
 * {
     transition: var(--theme-transition);
+}
+
+/* Force override browser cursors for the custom cursor */
+a, button, input, textarea, select, .nav-logo {
+    cursor: none !important;
 }
 
 /* Section spacing */
